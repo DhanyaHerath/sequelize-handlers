@@ -102,6 +102,23 @@ class ModelHandler {
     return [raw, handle];
   }
 
+  createUser() {
+    const handle = (req, res, next) => {
+      req.body.id = uuidv1();
+      req.body.password = uuidv1();
+      req.body.salt = 'saltyvolty';
+      req.body.companyId = 'gabbagabba';
+      this.model.create(req.body).then(respond).catch(next);
+
+      function respond(row) {
+        res.status(201);
+        res.send(res.transform(row));
+      }
+    };
+
+    return [raw, handle];
+  }
+
   findOne(params, options) {
     options = _.merge(parse(params, this.model), options);
 
