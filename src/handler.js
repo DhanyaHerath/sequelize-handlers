@@ -32,26 +32,9 @@ class ModelHandler {
         if (!row) {
           throw new HttpStatusError(404, 'Not Found');
         }
-
-  create() {
-     const handle = (req, res, next) => {
-          req.body.id = uuidv1();
-          this.model
-                .create(req.body)
-                .then(respond)
-                .catch(next);
-
-            function respond(row) {
-                res.status(201);
-                res.send(res.transform(row));
-            }
-        };
-
-        return [
-            raw,
-            handle
-        ];
-    }
+        res.send(res.transform(row));
+      }
+    };
     return [raw, handle];
   }
 
