@@ -2,7 +2,7 @@ const _ = require('lodash');
 const { HttpStatusError } = require('./errors');
 const { parse } = require('./parser');
 const { distinct, raw } = require('./transforms');
-import uuidv1 from 'uuid/v1';
+const uuidv1 = require ('uuid/v1');
 
 class ModelHandler {
   constructor(model, defaults = { limit: 50, offset: 0 }) {
@@ -75,7 +75,7 @@ class ModelHandler {
       }
 
       function respond() {
-        res.sendStatus(204);
+        res.send(req.body);
       }
     };
 
