@@ -75,7 +75,7 @@ class ModelHandler {
       }
 
       function respond() {
-        res.sendStatus(204);
+        res.send(req.body);
       }
     };
 
